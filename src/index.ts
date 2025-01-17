@@ -30,6 +30,11 @@ if (!isProduction) {
 export const clerkClient = createClerkClient({
   secretKey: process.env.CLERK_SECRET_KEY,
 });
+const corsConfig = {
+  origin: "*",
+  credential: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
 
 const app = express();
 app.use(helmet());
@@ -37,7 +42,7 @@ app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(morgan("common"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
+app.use(cors(corsConfig));
 app.use(clerkMiddleware());
 
 //Routes
