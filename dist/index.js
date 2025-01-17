@@ -81,6 +81,7 @@ app.use(helmet_1.default.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use((0, morgan_1.default)("common"));
 app.use(body_parser_1.default.json());
 app.use(body_parser_1.default.urlencoded({ extended: false }));
+app.options("", (0, cors_1.default)(corsConfig));
 app.use((0, cors_1.default)(corsConfig));
 app.use((0, express_2.clerkMiddleware)());
 //Routes
